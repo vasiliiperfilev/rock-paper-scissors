@@ -1,3 +1,11 @@
+const playerInterface = document.querySelectorAll(".weapon");
+playerInterface.forEach((item) => addEventListener('click', playRound));
+
+let playerScore = 0,
+    computerScore = 0,
+    round = 0;
+let resultOutput = document.querySelector(".results");
+
 function computerPlay() {
     //generate random number from 1 to 3
     let computerChoice;
@@ -5,69 +13,47 @@ function computerPlay() {
     //1 - rock, 2 - paper, 3 - scissors
     if (randomNum === 3) {
         computerChoice = 'paper';
-    }
-    else if (randomNum === 2) {
+    } else if (randomNum === 2) {
         computerChoice = 'rock';
-    }
-    else {
+    } else {
         computerChoice = 'scissors';
     }
     //return computer choice
     return computerChoice;
 }
 
-function playRound(playerChoice, computerChoice){
-    playerChoice = playerChoice.toLowerCase();
+function playRound(e) {
+    const computerChoice = computerPlay();
+    const playerChoice = e.srcElement.dataset.weaponname;
 
     //if draw return 3, if player won return 1, if player lost retirn 2
-    if (playerChoice === computerChoice){
-        return 3
+    if (playerChoice === computerChoice) {
+        resultOutput.textContent = `Round ${round + 1}. Draw! You both used ${computerChoice}`;
+    } else if ((playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')) {
+
+        resultOutput.textContent = `Round ${round + 1}.You won! Because ${playerChoice} beats ${computerChoice}`;
+        playerScore++;
+    } else {
+        resultOutput.textContent = `Round ${round + 1}.You lost! Because ${computerChoice} beats ${playerChoice}`;
+        computerScore++;
     }
-    else if ((playerChoice === 'paper' && computerChoice === 'rock') ||
-            (playerChoice === 'rock' && computerChoice === 'scissors') ||
-            (playerChoice === 'scissors' && computerChoice === 'paper')){
-        return 1
-    }
-    else {
-        return 2
+    round++;
+    if (round === 5) {
+        checkScores();
+        playerScore = 0,
+        computerScore = 0,
+        round = 0;
     }
 }
 
-function game() {
-    //wins counters
-    let playerWin = 0, computerWin = 0;
-    
-    //5 rounds
-    for (let i = 0; i < 5; i++){
-        //use input
-        let playerChoice = prompt(`Round ${i+1}: Enter 'rock', 'paper' or 'scissors'`).toLowerCase();
-        let computerChoice = computerPlay();
-        //result string
-        result = playRound(playerChoice, computerChoice);
-        //if result 1 player won, if 2 computer won else draw
-        if (result === 1){
-            console.log(`You won! Because ${playerChoice} beats ${computerChoice}`);
-            playerWin++;
-        }
-        else if (result === 2){
-            console.log(`You lost! Because ${computerChoice} beats ${playerChoice}`);
-            computerWin++;
-        }
-        else {
-            console.log(`Draw! You both used ${computerChoice}`);
-        }
-    }
-
-    //if overall player score > computer score player win else computer win
-    if (playerWin > computerWin){
-        console.log(`Overall score ${playerWin}:${computerWin}. You won!`)
-    }
-    else if (playerWin === computerWin){
-        console.log(`Overall score ${playerWin}:${computerWin}. Draw!`)
-    }
-    else {
-        console.log(`Overall score ${playerWin}:${computerWin}. You lost!`)
+function checkScores() {
+    if (playerScore > computerScore) {
+        resultOutput.textContent += `\r\nOverall score ${playerScore}:${computerScore}. You won!`
+    } else if (playerScore === computerScore) {
+        resultOutput.textContent += `\r\nOverall score ${playerScore}:${computerScore}. Draw!`
+    } else {
+        resultOutput.textContent += `\r\nOverall score ${playerScore}:${computerScore}. You lost!`
     }
 }
-
-game();
