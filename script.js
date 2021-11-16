@@ -1,10 +1,12 @@
-const playerInterface = document.querySelectorAll(".weapon");
-playerInterface.forEach((item) => addEventListener('click', playRound));
+const playerInterface = document.getElementsByClassName("weapon");
+for (const weapon of playerInterface){
+    weapon.addEventListener('click', playRound);
+}
 
 let playerScore = 0,
     computerScore = 0,
     round = 0;
-let resultOutput = document.querySelector(".results");
+let resultOutput = document.querySelector("#resultText");
 
 function computerPlay() {
     //generate random number from 1 to 3

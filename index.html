@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +9,29 @@
     <script src="script.js" defer></script>
     <title>Rock, Paper, Scissors!</title>
 </head>
+
 <body>
+    <div class="header">Rock.Paper.Scissors</div>
     <div class="playerInterface">
-        <button data-weaponName="rock" class="weapon">Rock</button>
-        <button data-weaponName="paper" class="weapon">Paper</button>
-        <button data-weaponName="scissors" class="weapon">Scissors</button>
+        <img class="weapon" data-weaponName="rock" src="images/rock.png" alt="rock">
+        <img class="weapon" data-weaponName="paper" src="images/paper.png" alt="paper">
+        <img class="weapon" data-weaponName="scissors" src="images/scissors.png" alt="scissors">
     </div>
-    <div class="results">Place for results</div>
+    <div class="results">
+        <div id="opponentWeapon">
+            <img src="images/opponent.png" alt="opponent weapon">
+        </div>
+        <div>
+            <div>Round: <span id="round">1</span></div>
+            <div>
+                Your score: <span id="playerScore">0</span>
+                Computer score: <span id="computerScore">0</span>
+            </div>
+            <div id="resultText">
+                Choose your weapon!
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,3 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    font-size: 72px;
+    color: lightseagreen;
+    font-family:monospace;
+    border-bottom: 1px solid lightseagreen;
+}
+
+.playerInterface {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    gap: 25px;
+}
+
+.weapon {
+    cursor: pointer;
+    width: 200px;
+    height: auto;
+    transition: 0.3s;
+}
+
+.weapon:hover {
+    transform: scale(1.1);
+    filter: invert(47%) sepia(84%) 
+        saturate(394%) hue-rotate(128deg) brightness(105%) contrast(90%);
+}
+
 .results {
+    display: flex;
+    flex-direction: row;
+}
+
+#opponentWeapon img{
+    width: 200px;
+    height: auto;
+}
+
+#resultText {
     white-space: pre;
 }
