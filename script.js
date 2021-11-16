@@ -1,7 +1,5 @@
-const playerInterface = document.getElementsByClassName("weapon");
-for (const weapon of playerInterface){
-    weapon.addEventListener('click', playRound);
-}
+const playerInterface = document.querySelectorAll(".weapon");
+playerInterface.forEach((item => item.addEventListener('click', playRound)));
 
 let playerScore = 0,
     computerScore = 0,
