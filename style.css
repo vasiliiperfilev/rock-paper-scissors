@@ -81,7 +81,7 @@ body {
     }
 
     .playerInterface {
-        height: auto;
+        height: 100hv;
     }
 
     .weapon {
