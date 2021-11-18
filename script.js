@@ -25,7 +25,11 @@ function computerPlay() {
 function playRound(e) {
     const computerChoice = computerPlay();
     const playerChoice = e.srcElement.dataset.weaponname;
+    let roundOutput = document.getElementById("round");
+    let playerScoreOutput = document.getElementById("playerScore");
+    let computerScoreOutput = document.getElementById("computerScore");
 
+    changeWeaponImage(computerChoice);
     //if draw return 3, if player won return 1, if player lost retirn 2
     if (playerChoice === computerChoice) {
         resultOutput.textContent = `Round ${round + 1}. Draw! You both used ${computerChoice}`;
@@ -39,9 +43,15 @@ function playRound(e) {
         resultOutput.textContent = `Round ${round + 1}.You lost! Because ${computerChoice} beats ${playerChoice}`;
         computerScore++;
     }
+
     round++;
+    roundOutput.textContent = round;
+    playerScoreOutput.textContent = playerScore;
+    computerScoreOutput.textContent = computerScore;
+
     if (round === 5) {
         checkScores();
+        changeWeaponImage();
         playerScore = 0,
         computerScore = 0,
         round = 0;
@@ -55,5 +65,21 @@ function checkScores() {
         resultOutput.textContent += `\r\nOverall score ${playerScore}:${computerScore}. Draw!`
     } else {
         resultOutput.textContent += `\r\nOverall score ${playerScore}:${computerScore}. You lost!`
+    }
+}
+
+function changeWeaponImage(computerChoice){
+    let img = document.getElementById("opponentWeaponImage");
+    if (computerChoice === "paper"){
+        img.src = "images/paper.png"
+    }
+    else if (computerChoice === "rock"){
+        img.src = "images/rock.png"
+    }
+    else if (computerChoice === "scissors"){
+        img.src = "images/scissors.png"
+    }
+    else {
+        img.src = "images/opponent.png"
     }
 }

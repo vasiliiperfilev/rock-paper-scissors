@@ -39,12 +39,32 @@ body {
 
 .results {
     display: flex;
+    width: 50%;
     flex-direction: row;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+#opponentWeapon {
+    width: 30%;
+    padding: 5px;
+    border-right: 1px solid grey;
+    text-align: center;
 }
 
 #opponentWeapon img{
     width: 200px;
     height: auto;
+}
+
+#resultTextbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    gap: 20px;
+    text-align: center;
 }
 
 #resultText {
